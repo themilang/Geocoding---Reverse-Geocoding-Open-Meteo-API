@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TiWeatherNight, TiWeatherShower, TiWeatherWindyCloudy, TiWeatherCloudy } from "react-icons/ti";
+import { TiWeatherNight,TiWeatherPartlySunny, TiWeatherShower, TiWeatherWindyCloudy, TiWeatherCloudy } from "react-icons/ti";
 
 const HomePage = () => {
     const [temperature, setTemperature] = useState(null);
@@ -68,12 +68,18 @@ const HomePage = () => {
     
                                 
                                 if (response.current.weather_code === 1 || response.current.weather_code === 0) {
+                                    setStatus("Clear");
+                                    setWeatherIcon(<TiWeatherNight className='animate-pulse invert'/>);
+                                } else if (response.current.weather_code === 2 || response.current.weather_code === 3) {
                                     setStatus("Mainly clear");
-                                    setWeatherIcon(<TiWeatherNight />);
+                                    setWeatherIcon(<TiWeatherPartlySunny className='animate-pulse invert'/>);
+                                } else if (response.current.weather_code === 4 || response.current.weather_code === 5) {
+                                    setStatus("Partly Cloudy clear");
+                                    setWeatherIcon(<TiWeatherNight className='animate-pulse invert'/>);
                                 }
-                            } else {
+                             else {
                                 setError("Error: No weather data received");
-                            }
+                            }}
                         }, i * 2000); 
                     }
                 } else {
@@ -91,16 +97,16 @@ const HomePage = () => {
     
 
     return (
-        <div className='text-gray-400 text-center mt-32 ml-autobg-gray-300 rounded-lg shadow-md p-6 mx-auto  w-[50rem] bg-blue-100  '>
+        <div className='text-gray-400 text-center  sm:mt-32  sm:ml-autobg-gray-300 rounded-lg shadow-md sm:p-6 p-3 mx-auto w-full overflow-hidden sm:w-[50rem] bg-blue-100 sm:h-auto h-[100vh] '>
             {loading && <p className='h-100vh'>Loading...</p>}
             {!loading && error && <p>{error}</p>}
             {!loading && !error && (
                 <>
-                    <h1 className='text-2xl'>
+                    <h1 className='text-2xl mt-12'>
                         Right Now in <span className='text-bold text-3xl text-black ml-2 relative w-[max-content] font-mono before:absolute before:inset-0 before:animate-typewriter '>{city}</span>, it's {status} <br />
 
-                        <div className='flex items-center justify-center gap-32 mt-12'>
-                            <div className='w-12 ' style={{ fontSize: '6rem' }}>
+                        <div className='flex flex-col items-center sm:flex-row sm:items-center   justify-center sm:gap-32 gap-12 mt-12 '>
+                            <div className='' style={{ fontSize: '6rem' }}>
                                 {weatherIcon}
                             </div>
                             <div>
@@ -131,7 +137,7 @@ const HomePage = () => {
                             {currentDay}
                         </div>
                     </div>
-       <h2 className='mt-48'> Forecast This Week</h2>
+       <h2 className='sm:mt-48 mt-16'> Forecast This Week</h2>
                     <div className='flex justify-center mt-4 gap-6'>
                         {nextDays.map((day, index) => (
                             <div key={index} className='flex flex-col items-center'>
