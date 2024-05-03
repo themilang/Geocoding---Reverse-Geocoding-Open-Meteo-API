@@ -6,15 +6,20 @@ const openmeteoUrl = import.meta.env.VITE_OPEN_METEO_URL;
 import WeatherCard from "./WeatherCard";
 
 const HomePage = () => {
-  const [temperature, setTemperature] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState("");
+  const [cityLongitude, setCityLongitude] = useState(null);
+  const [cityLatitude, setCityLatitude] = useState(null);
+  const [city, setCity] = useState("");
+  const [temperature, setTemperature] = useState(null);
+  const [nextDaysMaxTemp, setNextDaysMaxTemp] = useState("");
+  const [nextDaysMinTemp, setNextDaysMinTemp] = useState("");
   const [wind, setWind] = useState("");
   const [rain, setRain] = useState("");
   const [cloudcover, setCloudcover] = useState("");
-  const [error, setError] = useState(null);
-  const [weatherIcon, setWeatherIcon] = useState(null);
+  const [status, setStatus] = useState("");
   const [currentDay, setCurrentDay] = useState(null);
+
   const [days] = useState([
     "Sunday",
     "Monday",
@@ -33,11 +38,8 @@ const HomePage = () => {
     "Friday",
     "Saturday",
   ]);
-  const [nextDaysMaxTemp, setNextDaysMaxTemp] = useState("");
-  const [nextDaysMinTemp, setNextDaysMinTemp] = useState("");
-  const [cityLongitude, setCityLongitude] = useState(null);
-  const [cityLatitude, setCityLatitude] = useState(null);
-  const [city, setCity] = useState("");
+
+  const [weatherIcon, setWeatherIcon] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
