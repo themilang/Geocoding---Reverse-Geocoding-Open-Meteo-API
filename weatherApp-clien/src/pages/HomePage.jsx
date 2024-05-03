@@ -97,13 +97,13 @@ const HomePage = () => {
     
 
     return (
-        <div className='text-gray-400 text-center  sm:mt-32  sm:ml-autobg-gray-300 rounded-lg shadow-md sm:p-6 p-3 mx-auto w-full overflow-hidden sm:w-[50rem] bg-blue-100 sm:h-auto h-[100vh] '>
+        <div className='text-gray-400 text-center  sm:mt-32  sm:ml-autobg-gray-300 rounded-lg shadow-md sm:p-6 p-3 mx-auto w-full overflow-hidden sm:w-[50rem] bg-blue-100 sm:h-auto h-[100vh] dark:bg-gray-900'>
             {loading && <p className='h-100vh'>Loading...</p>}
             {!loading && error && <p>{error}</p>}
             {!loading && !error && (
                 <>
                     <h1 className='text-2xl mt-12'>
-                        Right Now in <span className='text-bold text-3xl text-black ml-2 relative w-[max-content] font-mono before:absolute before:inset-0 before:animate-typewriter '>{city}</span>, it's {status} <br />
+                        Right Now in <span className='text-bold text-3xl text-black ml-2 relative w-[max-content] font-mono before:absolute before:inset-0 before:animate-typewriter dark:text-white '>{city}</span>, it's {status} <br />
 
                         <div className='flex flex-col items-center sm:flex-row sm:items-center   justify-center sm:gap-32 gap-12 mt-12 '>
                             <div className='' style={{ fontSize: '6rem' }}>
